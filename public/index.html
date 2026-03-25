@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offer Letter — Novashield Cybertech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a0e1a;
+      --navy2: #0f1628;
+      --navy3: #151d35;
+      --cyan: #00d4ff;
+      --cyan2: #00b8e0;
+      --green: #10b981;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --border: #1e2d4a;
+      --input: #0d1526;
+      --card: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo img {
+      height: 130px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: invert(1) hue-rotate(210deg);
+      mix-blend-mode: screen;
+    }
+
+    .nav-badge {
+      font-size: 11px;
+      background: rgba(0, 212, 255, .12);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 212, 255, .25);
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+    }
+
+    /* ── LAYOUT ── */
+    .wrapper {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* ── FORM PANEL ── */
+    .form-panel {
+      background: var(--navy2);
+      border-right: 1px solid var(--border);
+      padding: 32px;
+      overflow-y: auto;
+    }
+
+    .panel-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-title::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 16px;
+      background: var(--cyan);
+      border-radius: 2px;
+    }
+
+    .form-section {
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: .5px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      background: var(--input);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, .08);
+    }
+
+    .field input::placeholder {
+      color: #3a4d6a;
+    }
+
+    /* Name row */
+    .name-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 100px 1fr;
+      gap: 10px;
+    }
+
+    /* stipend row */
+    .stipend-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .stipend-prefix {
+      background: var(--navy3);
+      border: 1px solid var(--border);
+      border-right: none;
+      padding: 10px 14px;
+      border-radius: 8px 0 0 8px;
+      font-size: 15px;
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .stipend-row input {
+      border-radius: 0 8px 8px 0 !important;
+    }
+
+    /* divider */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 4px 0 24px;
+    }
+
+    /* submit button */
+    .btn-send {
+      width: 100%;
+      background: var(--cyan);
+      color: var(--navy);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 8px;
+    }
+
+    .btn-send:hover {
+      background: var(--cyan2);
+      transform: translateY(-1px);
+    }
+
+    .btn-send:active {
+      transform: translateY(0);
+    }
+
+    .btn-send:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* success box */
+    .success-box {
+      display: none;
+      background: rgba(16, 185, 129, .08);
+      border: 1px solid rgba(16, 185, 129, .3);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+
+    .success-box.show {
+      display: block;
+    }
+
+    .success-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .success-link {
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-all;
+    }
+
+    .success-link a {
+      color: var(--cyan);
+    }
+
+    .copy-btn {
+      display: inline-block;
+      margin-top: 8px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color .2s;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* error */
+    .error-box {
+      display: none;
+      background: rgba(239, 68, 68, .08);
+      border: 1px solid rgba(239, 68, 68, .3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #fca5a5;
+    }
+
+    .error-box.show {
+      display: block;
+    }
+
+    /* ── PREVIEW PANEL ── */
+    .preview-panel {
+      background: var(--navy);
+      padding: 32px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 680px;
+      margin-bottom: 20px;
+    }
+
+    /* letter card */
+    .letter-card {
+      background: #fff;
+      color: #1a1a1a;
+      width: 100%;
+      max-width: 680px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .4);
+    }
+
+    .letter-head {
+      background: transparent;
+      padding: 4px 40px 0;
+      text-align: center;
+    }
+
+    .letter-logo img {
+      height: 140px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto -36px;
+    }
+
+    .letter-body {
+      padding: 0 48px 36px;
+    }
+
+    /* ── EXACT MATCH to offer.html letter styles ── */
+    .letter-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #0a0e1a;
+      text-align: center;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .letter-rule {
+      width: 56px;
+      height: 2px;
+      background: #0a0e1a;
+      margin: 0 auto 24px;
+      border: none;
+    }
+
+    .letter-date {
+      font-size: 13px;
+      color: #64748b;
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .letter-to {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .letter-subject {
+      font-weight: 700;
+      font-size: 14px;
+      margin: 16px 0 18px;
+    }
+
+    p.letter-para {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #374151;
+      margin-bottom: 16px;
+    }
+
+    .detail-section {
+      margin: 20px 0 8px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .detail-row {
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #1e293b;
+    }
+
+    .detail-row strong {
+      font-weight: 700;
+    }
+
+    .detail-note {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.75;
+      margin: 18px 0 24px;
+    }
+
+    .sign-block {
+      margin-top: 24px;
+    }
+
+    .sign-from {
+      font-size: 13px;
+      color: #374151;
+      margin-bottom: 0;
+    }
+
+    .sign-img {
+      height: 64px;
+      width: auto;
+      display: block;
+      mix-blend-mode: multiply;
+      object-fit: contain;
+      margin: -8px 0 -12px;
+      transform: rotate(-8deg) translateX(-4px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .sign-name {
+      font-weight: 700;
+      font-size: 14px;
+      position: relative;
+      z-index: 0;
+    }
+
+    .acceptance {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .acceptance-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .acceptance-text {
+      font-size: 14px;
+      color: #374151;
+      margin-bottom: 20px;
+    }
+
+    .sig-placeholder {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    .date-placeholder {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    /* spinner */
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(10, 14, 26, .3);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* select styling */
+    select option {
+      background: #0d1526;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo"><img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png"
+        alt="Novashield Cybertech LLP" /></div>
+    <div style="display:flex;gap:32px;align-items:center;">
+      <a href="/" style="color:var(--cyan);text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;border-bottom:2px solid var(--cyan);padding-bottom:4px;">OFFER LETTERS</a>
+      <a href="/admin-msa.html" style="color:var(--muted);text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;transition:color 0.2s;">MSAs</a>
+    </div>
+    <div class="nav-badge">HIRING & SALES SYSTEM</div>
+  </nav>
+
+  <div class="wrapper">
+
+    <!-- ── FORM ── -->
+    <div class="form-panel">
+      <div class="panel-title">Generate Offer Letter</div>
+
+      <form id="offerForm">
+
+        <!-- Employee -->
+        <div class="form-section">
+          <div class="section-label">Employee Details</div>
+
+          <div class="field">
+            <label>Salutation &amp; Full Name</label>
+            <div class="name-row">
+              <select id="pronounce" required>
+                <option value="">Hon.</option>
+                <option value="Mr.">Mr.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Dr.">Dr.</option>
+              </select>
+              <input id="fname" type="text" placeholder="First Name" required />
+              <input id="mname" type="text" placeholder="M. Name" />
+              <input id="lname" type="text" placeholder="Last Name" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Email Address <span style="color:#ef4444">*</span></label>
+            <input id="email" type="email" placeholder="intern@example.com" required />
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Position -->
+        <div class="form-section">
+          <div class="section-label">Offer Details</div>
+
+          <div class="field">
+            <label>Position / Role <span style="color:#ef4444">*</span></label>
+            <input id="position" type="text" placeholder="e.g. Vulnerability Reporting Intern" required />
+          </div>
+
+          <div class="field">
+            <label>Joining Date <span style="color:#ef4444">*</span></label>
+            <input id="joiningDate" type="date" required />
+          </div>
+
+          <div class="field">
+            <label>Monthly Stipend <span style="color:#ef4444">*</span></label>
+            <div class="stipend-row">
+              <span class="stipend-prefix">₹</span>
+              <input id="stipend" type="number" placeholder="5000" min="0" required style="flex:1" />
+            </div>
+            <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" id="isUnpaid" style="width: auto; margin:0;" />
+              <label for="isUnpaid" style="margin: 0; font-size: 13px; color: var(--text);">Unpaid Internship</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Internship Duration <span style="color:#ef4444">*</span></label>
+            <select id="duration" required>
+              <option value="">Select duration…</option>
+              <option value="1 Month">1 Month</option>
+              <option value="3 Months">3 Months</option>
+              <option value="6 Months">6 Months</option>
+            </select>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <button type="submit" class="btn-send" id="sendBtn">
+          SEND OFFER LETTER
+        </button>
+
+        <div class="error-box" id="errorBox"></div>
+
+        <div class="success-box" id="successBox">
+          <div class="success-title">✅ OFFER LETTER SENT</div>
+          <div class="success-link">
+            Employee link: <a id="offerLink" href="#" target="_blank"></a>
+          </div>
+          <button class="copy-btn" id="copyBtn" type="button">Copy Link</button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- ── PREVIEW ── -->
+    <div class="preview-panel">
+      <div class="preview-header">
+        <div class="panel-title" style="margin-bottom:0">Live Preview</div>
+        <span style="font-size:12px;color:var(--muted)">Updates as you type</span>
+      </div>
+
+      <div class="letter-card">
+        <div class="letter-head">
+          <div class="letter-logo"><img
+              src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png"
+              alt="Novashield Cybertech LLP" /></div>
+        </div>
+        <div class="letter-body">
+
+          <div class="letter-title">OFFER LETTER</div>
+          <hr class="letter-rule">
+
+          <div class="letter-date">Date: <span id="prev-date"></span></div>
+
+          <div class="letter-to">To,</div>
+          <div class="letter-to">
+            <strong id="prev-fullname" class="sig-placeholder">Mr. / Ms. Full Name</strong>
+          </div>
+
+          <div class="letter-subject">
+            Subject: Offer for the Position of
+            <span id="prev-position-sub" class="sig-placeholder">Position Name</span>
+          </div>
+
+          <p class="letter-para">
+            Dear <span id="prev-dear" class="sig-placeholder">Mr. / Ms. [Name]</span>,
+          </p>
+
+          <p class="letter-para">
+            We are pleased to offer you an internship opportunity with
+            <strong>Novashield Cybertech LLP</strong> for the position of
+            <strong id="prev-position-body" class="sig-placeholder">Position Name</strong>.
+            This internship is intended to provide practical exposure to cybersecurity
+            practices, vulnerability assessment workflows, and responsible reporting standards.
+          </p>
+
+          <div class="detail-section">Position Details:</div>
+
+          <div class="detail-row"><strong>Joining Date:</strong>
+            <span id="prev-joining" class="sig-placeholder">DD Month YYYY</span>
+          </div>
+          <div class="detail-row" id="stipend-row-normal"><strong>Monthly Stipend:</strong>
+            ₹<span id="prev-stipend" class="sig-placeholder">—</span>
+            <span id="prev-stipend-words" style="font-size:12px;color:#6b7280"></span>
+          </div>
+          <div class="detail-row" id="stipend-row-unpaid" style="display:none;">
+            <strong>Stipend:</strong> This is an unpaid internship. However, a performance-based stipend or incentive may be provided at the discretion of the organization.
+          </div>
+          <div class="detail-row"><strong>Internship Duration:</strong>
+            <span id="prev-duration" class="sig-placeholder">— Months</span>
+          </div>
+
+          <div class="detail-note" id="stipend-note">
+            The stipend may be reviewed and increased based on your performance, quality of work,
+            consistency, and contribution after a few months, at the discretion of the organization.
+          </div>
+
+          <p class="letter-para">
+            We look forward to your contribution and wish you a productive learning experience
+            with Novashield.in.
+          </p>
+
+          <div class="sign-block">
+            <div class="sign-from">Sincerely,</div>
+            <img src="/signature.jpg" alt="Signature" class="sign-img" />
+            <div class="sign-name">Novashield Cybertech LLP</div>
+          </div>
+
+          <div class="acceptance">
+            <div class="acceptance-title">ACCEPTANCE</div>
+            <p class="acceptance-text">
+              I, <span id="prev-fullname2" class="sig-placeholder">Full Name</span>,
+              accept the terms and conditions stated in this offer letter.
+            </p>
+            <div style="font-size:13px;color:#374151;margin-top:16px;">
+              Signature: <span class="sig-placeholder">Awaiting employee signature…</span><br>
+              Date: <span class="date-placeholder">Auto-generated on acceptance</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Helpers ──────────────────────────────────────────────────────────────
+    function formatDisplayDate(isoStr) {
+      if (!isoStr) return null;
+      const d = new Date(isoStr + 'T00:00:00');
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function numberToWords(n) {
+      const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
+        'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
+        'Seventeen', 'Eighteen', 'Nineteen'];
+      const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+      if (n === 0) return 'Zero';
+      if (n < 20) return ones[n];
+      if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? ' ' + ones[n % 10] : '');
+      if (n < 1000) return ones[Math.floor(n / 100)] + ' Hundred' + (n % 100 ? ' ' + numberToWords(n % 100) : '');
+      if (n < 100000) return numberToWords(Math.floor(n / 1000)) + ' Thousand' + (n % 1000 ? ' ' + numberToWords(n % 1000) : '');
+      if (n < 10000000) return numberToWords(Math.floor(n / 100000)) + ' Lakh' + (n % 100000 ? ' ' + numberToWords(n % 100000) : '');
+      return numberToWords(Math.floor(n / 10000000)) + ' Crore' + (n % 10000000 ? ' ' + numberToWords(n % 10000000) : '');
+    }
+
+    // ── Live Preview ─────────────────────────────────────────────────────────
+    const fields = ['pronounce', 'fname', 'mname', 'lname', 'position', 'joiningDate', 'stipend', 'duration'];
+
+    function updatePreview() {
+      const p = document.getElementById('pronounce').value;
+      const f = document.getElementById('fname').value.trim();
+      const m = document.getElementById('mname').value.trim();
+      const l = document.getElementById('lname').value.trim();
+      const pos = document.getElementById('position').value.trim();
+      const jd = document.getElementById('joiningDate').value;
+      const stip = document.getElementById('stipend').value;
+      const dur = document.getElementById('duration').value;
+
+      const fullName = [p, f, m, l].filter(Boolean).join(' ') || null;
+      const dearName = [p, f].filter(Boolean).join(' ') || null;
+
+      // Date header
+      document.getElementById('prev-date').textContent =
+        new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+      // Name
+      set('prev-fullname', fullName);
+      set('prev-fullname2', fullName);
+      set('prev-dear', dearName ? dearName + ',' : null);
+
+      // Position
+      set('prev-position-sub', pos || null);
+      set('prev-position-body', pos || null);
+
+      // Joining
+      set('prev-joining', jd ? formatDisplayDate(jd) : null);
+
+      // Stipend
+      const isUnpaid = document.getElementById('isUnpaid').checked;
+      const stipInput = document.getElementById('stipend');
+
+      if (isUnpaid) {
+        stipInput.disabled = true;
+        stipInput.required = false;
+        document.getElementById('stipend-row-normal').style.display = 'none';
+        document.getElementById('stipend-row-unpaid').style.display = 'block';
+        document.getElementById('stipend-note').style.display = 'none';
+      } else {
+        stipInput.disabled = false;
+        stipInput.required = true;
+        document.getElementById('stipend-row-normal').style.display = 'block';
+        document.getElementById('stipend-row-unpaid').style.display = 'none';
+        document.getElementById('stipend-note').style.display = 'block';
+
+        if (stip && Number(stip) > 0) {
+          const num = Number(stip);
+          document.getElementById('prev-stipend').textContent = num.toLocaleString('en-IN');
+          document.getElementById('prev-stipend-words').textContent =
+            `(Rupees ${numberToWords(num)} only)`;
+          document.getElementById('prev-stipend').className = '';
+        } else {
+          document.getElementById('prev-stipend').textContent = '—';
+          document.getElementById('prev-stipend').className = 'sig-placeholder';
+          document.getElementById('prev-stipend-words').textContent = '';
+        }
+      }
+
+      // Duration
+      set('prev-duration', dur || null);
+    }
+
+    function set(id, val) {
+      const el = document.getElementById(id);
+      if (val) {
+        el.textContent = val;
+        el.className = '';
+      } else {
+        el.textContent = el.dataset.placeholder || el.textContent;
+        el.className = 'sig-placeholder';
+      }
+    }
+
+    // Attach listeners
+    ['pronounce', 'fname', 'mname', 'lname', 'position', 'joiningDate', 'stipend', 'duration']
+      .forEach(id => document.getElementById(id).addEventListener('input', updatePreview));
+    document.getElementById('isUnpaid').addEventListener('change', updatePreview);
+
+    updatePreview(); // init date
+
+    // ── Submit ───────────────────────────────────────────────────────────────
+    document.getElementById('offerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const btn = document.getElementById('sendBtn');
+      const successBox = document.getElementById('successBox');
+      const errorBox = document.getElementById('errorBox');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>SENDING…';
+      successBox.classList.remove('show');
+      errorBox.classList.remove('show');
+
+      const payload = {
+        pronounce: document.getElementById('pronounce').value,
+        fname: document.getElementById('fname').value.trim(),
+        mname: document.getElementById('mname').value.trim(),
+        lname: document.getElementById('lname').value.trim(),
+        position: document.getElementById('position').value.trim(),
+        joiningDate: document.getElementById('joiningDate').value,
+        stipend: document.getElementById('isUnpaid').checked ? 'Unpaid' : document.getElementById('stipend').value,
+        duration: document.getElementById('duration').value,
+        email: document.getElementById('email').value.trim(),
+      };
+
+      try {
+        const res = await fetch('/api/offers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await res.json();
+
+        if (data.success) {
+          document.getElementById('offerLink').href = data.link;
+          document.getElementById('offerLink').textContent = data.link;
+          successBox.classList.add('show');
+
+          if (data.emailWarning) {
+            errorBox.textContent = '⚠️ Email could not be sent: ' + data.emailWarning + '. Share the link above manually.';
+            errorBox.classList.add('show');
+          }
+        } else {
+          throw new Error(data.error || 'Unknown error');
+        }
+      } catch (err) {
+        errorBox.textContent = '❌ ' + err.message;
+        errorBox.classList.add('show');
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = 'SEND OFFER LETTER';
+    });
+
+    // Copy link
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      const link = document.getElementById('offerLink').href;
+      navigator.clipboard.writeText(link).then(() => {
+        document.getElementById('copyBtn').textContent = 'Copied!';
+        setTimeout(() => document.getElementById('copyBtn').textContent = 'Copy Link', 2000);
+      });
+    });
+  </script>
+</body>
+
+</html>

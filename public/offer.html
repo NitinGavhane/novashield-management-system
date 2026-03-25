@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Offer Letter — Novashield Cybertech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:  #0a0e1a;
+      --cyan:  #00d4ff;
+      --green: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* loading */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 999;
+      transition: opacity .4s;
+    }
+    .loader-logo img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .75; transform: scale(.96); }
+    }
+    .loader-bar {
+      width: 160px; height: 2px;
+      background: rgba(255,255,255,.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-progress {
+      height: 100%;
+      background: var(--cyan);
+      border-radius: 2px;
+      animation: load 1s ease-out forwards;
+    }
+    @keyframes load { from { width: 0 } to { width: 100% } }
+
+    /* header */
+    header {
+      background: var(--navy);
+      padding: 14px 24px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .header-logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* content */
+    .content { max-width: 700px; margin: 0 auto; padding: 36px 16px; }
+
+    /* letter card */
+    .letter-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,.12);
+    }
+    .letter-head {
+      background: transparent;
+      padding: 4px 40px 0;
+      text-align: center;
+    }
+    .letter-logo img {
+      height: 140px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto -36px;
+    }
+    .letter-body { padding: 0 48px 40px; color: #1a1a1a; }
+
+    .letter-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .letter-rule {
+      width: 56px; height: 2px;
+      background: var(--navy);
+      margin: 0 auto 24px;
+      border: none;
+    }
+    .letter-date { font-size: 13px; color: #64748b; text-align: right; margin-bottom: 20px; }
+    .letter-to   { font-size: 14px; margin-bottom: 2px; }
+    .letter-subject { font-weight: 700; font-size: 14px; margin: 16px 0 18px; }
+    p.letter-para { font-size: 14px; line-height: 1.8; color: #374151; margin-bottom: 16px; }
+    .detail-section { margin: 20px 0 8px; font-weight: 700; font-size: 14px; }
+    .detail-row { font-size: 14px; margin-bottom: 6px; color: #1e293b; }
+    .detail-row strong { font-weight: 700; }
+    .detail-note {
+      font-size: 13px; color: #6b7280; line-height: 1.75;
+      margin: 18px 0 24px;
+    }
+    .sign-block { margin-top: 24px; }
+    .sign-from  { font-size: 13px; color: #374151; margin-bottom: 0; }
+    .sign-img   {
+      height: 64px; width: auto; display: block;
+      mix-blend-mode: multiply; object-fit: contain;
+      margin: -8px 0 -12px;
+      transform: rotate(-8deg) translateX(-4px);
+      position: relative; z-index: 1;
+    }
+    .sign-name  { font-weight: 700; font-size: 14px; position: relative; z-index: 0; }
+
+    /* acceptance */
+    .acceptance {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .acceptance-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .acceptance-text { font-size: 14px; color: #374151; margin-bottom: 20px; }
+
+    /* signature input */
+    .sig-group { margin-bottom: 12px; }
+    .sig-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .sig-input {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: #1e293b;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .sig-input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,212,255,.1); }
+    .sig-input::placeholder { color: #94a3b8; font-style: italic; }
+
+    .date-display { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+
+    .btn-accept {
+      width: 100%;
+      background: var(--navy);
+      color: var(--cyan);
+      border: 1.5px solid var(--cyan);
+      padding: 14px;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 8px;
+    }
+    .btn-accept:hover { background: var(--cyan); color: var(--navy); }
+    .btn-accept:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* accepted state */
+    .accepted-badge {
+      display: none;
+      background: #d1fae5;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      text-align: center;
+    }
+    .accepted-badge.show { display: block; }
+    .accepted-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #065f46;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .accepted-sub { font-size: 13px; color: #047857; }
+
+    .accepted-sig {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #a7f3d0;
+    }
+    .accepted-sig-name { font-weight: 600; font-size: 15px; color: #1e293b; }
+    .accepted-sig-date { font-size: 13px; color: #6b7280; margin-top: 2px; }
+
+    /* error */
+    .err { font-size: 13px; color: #ef4444; margin-top: 8px; display: none; }
+    .err.show { display: block; }
+
+    /* 404 */
+    .not-found {
+      text-align: center;
+      padding: 80px 24px;
+      display: none;
+    }
+    .not-found.show { display: block; }
+    .not-found-icon { font-size: 48px; margin-bottom: 16px; }
+    .not-found-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+    .not-found-text { color: #64748b; }
+
+    /* spinner */
+    .spinner {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(0,212,255,.3);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      .letter-body { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading screen -->
+<div id="loader">
+  <div class="loader-logo"><img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png" alt="Novashield Cybertech LLP" /></div>
+  <div class="loader-bar"><div class="loader-progress"></div></div>
+</div>
+
+<header>
+  <div class="header-logo"><img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png" alt="Novashield Cybertech LLP" /></div>
+</header>
+
+<div class="content">
+
+  <!-- Not found -->
+  <div class="not-found" id="notFound">
+    <div class="not-found-icon">🔒</div>
+    <div class="not-found-title">Offer Not Found</div>
+    <div class="not-found-text">This offer letter link is invalid or has expired.</div>
+  </div>
+
+  <!-- Letter -->
+  <div class="letter-card" id="letterCard" style="display:none">
+    <div class="letter-head">
+      <div class="letter-logo"><img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png" alt="Novashield Cybertech LLP" /></div>
+    </div>
+    <div class="letter-body">
+
+      <div class="letter-title">OFFER LETTER</div>
+      <hr class="letter-rule">
+
+      <div class="letter-date">Date: <span id="offerDate"></span></div>
+
+      <div class="letter-to">To,</div>
+      <div class="letter-to"><strong id="fullName"></strong></div>
+
+      <div class="letter-subject">
+        Subject: Offer for the Position of <span id="positionSub"></span>
+      </div>
+
+      <p class="letter-para">Dear <span id="dearName"></span>,</p>
+
+      <p class="letter-para">
+        We are pleased to offer you an internship opportunity with
+        <strong>Novashield Cybertech LLP</strong> for the position of
+        <strong id="positionBody"></strong>.
+        This internship is intended to provide practical exposure to cybersecurity
+        practices, vulnerability assessment workflows, and responsible reporting standards.
+      </p>
+
+      <div class="detail-section">Position Details:</div>
+      <div class="detail-row"><strong>Joining Date:</strong> <span id="joiningDate"></span></div>
+      <div class="detail-row" id="stipendRowNormal"><strong>Monthly Stipend:</strong> ₹<span id="stipend"></span></div>
+      <div class="detail-row" id="stipendRowUnpaid" style="display:none;">
+        <strong>Stipend:</strong> This is an unpaid internship. However, a performance-based stipend or incentive may be provided at the discretion of the organization.
+      </div>
+      <div class="detail-row"><strong>Internship Duration:</strong> <span id="duration"></span></div>
+
+      <div class="detail-note" id="stipendNote">
+        The stipend may be reviewed and increased based on your performance, quality of work,
+        consistency, and contribution after a few months, at the discretion of the organization.
+      </div>
+
+      <p class="letter-para">
+        We look forward to your contribution and wish you a productive learning experience
+        with Novashield.in.
+      </p>
+
+      <div class="sign-block">
+        <div class="sign-from">Sincerely,</div>
+        <img src="/signature.jpg" alt="Signature" class="sign-img" />
+        <div class="sign-name">Novashield Cybertech LLP</div>
+      </div>
+
+      <!-- Acceptance section -->
+      <div class="acceptance" id="acceptanceSection">
+        <div class="acceptance-title">ACCEPTANCE</div>
+        <p class="acceptance-text">
+          I, <strong id="acceptName"></strong>, accept the terms and conditions stated in this offer letter.
+        </p>
+
+        <!-- Not yet accepted -->
+        <div id="signForm">
+          <div class="sig-group">
+            <label class="sig-label">Your Signature (enter your full name)</label>
+            <input class="sig-input" id="sigInput" type="text" placeholder="Type your full name to sign…" />
+            <div class="date-placeholder date-display">Date will be recorded automatically on submission.</div>
+          </div>
+          <div class="err" id="sigErr">Please enter your full name to sign.</div>
+          <button class="btn-accept" id="acceptBtn">ACCEPT OFFER LETTER</button>
+        </div>
+
+        <!-- Already / just accepted -->
+        <div class="accepted-badge" id="acceptedBadge">
+          <div class="accepted-title">✅ OFFER LETTER ACCEPTED</div>
+          <div class="accepted-sub">Thank you! Your acceptance has been recorded and Novashield has been notified.</div>
+          <div class="accepted-sig">
+            <div class="accepted-sig-name" id="acceptedSigName"></div>
+            <div class="accepted-sig-date" id="acceptedSigDate"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ── Helpers ──────────────────────────────────────────────────────────────
+  function getOfferId() {
+    const parts = window.location.pathname.split('/');
+    return parts[parts.length - 1];
+  }
+
+  function formatDisplayDate(isoStr) {
+    const d = new Date(isoStr + 'T00:00:00');
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function numberToWords(n) {
+    const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
+                  'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
+                  'Seventeen', 'Eighteen', 'Nineteen'];
+    const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+    if (n === 0) return 'Zero';
+    if (n < 20) return ones[n];
+    if (n < 100) return tens[Math.floor(n/10)] + (n%10 ? ' '+ones[n%10] : '');
+    if (n < 1000) return ones[Math.floor(n/100)] + ' Hundred' + (n%100 ? ' '+numberToWords(n%100) : '');
+    if (n < 100000) return numberToWords(Math.floor(n/1000)) + ' Thousand' + (n%1000 ? ' '+numberToWords(n%1000) : '');
+    return numberToWords(Math.floor(n/100000)) + ' Lakh' + (n%100000 ? ' '+numberToWords(n%100000) : '');
+  }
+
+  // ── Load offer ────────────────────────────────────────────────────────────
+  async function loadOffer() {
+    const id = getOfferId();
+    try {
+      const res  = await fetch(`/api/offers/${id}`);
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        document.getElementById('notFound').classList.add('show');
+        return;
+      }
+
+      // Populate fields
+      const p = data.pronounce, f = data.fname, m = data.mname, l = data.lname;
+      const fullName = [p, f, m, l].filter(Boolean).join(' ');
+      const dearName = [p, f].filter(Boolean).join(' ');
+      const stipNum  = Number(data.stipend);
+
+      document.getElementById('offerDate').textContent  = data.offerDate;
+      document.getElementById('fullName').textContent   = fullName;
+      document.getElementById('positionSub').textContent  = data.position;
+      document.getElementById('dearName').textContent   = dearName + ',';
+      document.getElementById('positionBody').textContent = data.position;
+      document.getElementById('joiningDate').textContent  = formatDisplayDate(data.joiningDate);
+      if (data.stipend === 'Unpaid') {
+        document.getElementById('stipendRowNormal').style.display = 'none';
+        document.getElementById('stipendRowUnpaid').style.display = 'block';
+        document.getElementById('stipendNote').style.display = 'none';
+      } else {
+        document.getElementById('stipend').textContent =
+          stipNum.toLocaleString('en-IN') + ` (Rupees ${numberToWords(stipNum)} only)`;
+      }
+      document.getElementById('duration').textContent  = data.duration;
+      document.getElementById('acceptName').textContent = fullName;
+
+      // Already accepted?
+      if (data.status === 'accepted') {
+        showAccepted(data.signature, data.acceptedDate);
+      }
+
+      document.getElementById('letterCard').style.display = '';
+
+    } catch (e) {
+      document.getElementById('notFound').classList.add('show');
+    }
+
+    // Hide loader
+    const loader = document.getElementById('loader');
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display = 'none', 400);
+  }
+
+  function showAccepted(sig, date) {
+    document.getElementById('signForm').style.display = 'none';
+    document.getElementById('acceptedSigName').textContent = 'Signature: ' + sig;
+    document.getElementById('acceptedSigDate').textContent = 'Date: ' + date;
+    document.getElementById('acceptedBadge').classList.add('show');
+  }
+
+  // ── Accept ────────────────────────────────────────────────────────────────
+  document.getElementById('acceptBtn').addEventListener('click', async () => {
+    const sig = document.getElementById('sigInput').value.trim();
+    const err = document.getElementById('sigErr');
+    const btn = document.getElementById('acceptBtn');
+
+    if (!sig) {
+      err.classList.add('show');
+      return;
+    }
+    err.classList.remove('show');
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>SUBMITTING…';
+
+    try {
+      const id  = getOfferId();
+      const res = await fetch(`/api/offers/${id}/accept`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ signature: sig })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        showAccepted(sig, data.acceptedDate);
+      } else {
+        throw new Error(data.error);
+      }
+    } catch (e) {
+      btn.disabled = false;
+      btn.textContent = 'ACCEPT OFFER LETTER';
+      err.textContent = '❌ ' + e.message;
+      err.classList.add('show');
+    }
+  });
+
+  loadOffer();
+</script>
+</body>
+</html>

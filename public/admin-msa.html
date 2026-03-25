@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Service Agreement — Novashield Cybertech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a0e1a;
+      --navy2: #0f1628;
+      --navy3: #151d35;
+      --cyan: #00d4ff;
+      --cyan2: #00b8e0;
+      --green: #10b981;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --border: #1e2d4a;
+      --input: #0d1526;
+      --card: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo img {
+      height: 130px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: invert(1) hue-rotate(210deg);
+      mix-blend-mode: screen;
+    }
+
+    .nav-badge {
+      font-size: 11px;
+      background: rgba(0, 212, 255, .12);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 212, 255, .25);
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+    }
+
+    /* ── LAYOUT ── */
+    .wrapper {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* ── FORM PANEL ── */
+    .form-panel {
+      background: var(--navy2);
+      border-right: 1px solid var(--border);
+      padding: 32px;
+      overflow-y: auto;
+      height: calc(100vh - 60px);
+    }
+
+    .panel-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-title::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 16px;
+      background: var(--cyan);
+      border-radius: 2px;
+    }
+
+    .form-section {
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: .5px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: var(--input);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, .08);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #3a4d6a;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 4px 0 24px;
+    }
+
+    .btn-send {
+      width: 100%;
+      background: var(--cyan);
+      color: var(--navy);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 8px;
+    }
+
+    .btn-send:hover {
+      background: var(--cyan2);
+      transform: translateY(-1px);
+    }
+
+    .btn-send:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .success-box,
+    .error-box {
+      display: none;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+
+    .success-box {
+      background: rgba(16, 185, 129, .08);
+      border: 1px solid rgba(16, 185, 129, .3);
+    }
+
+    .error-box {
+      background: rgba(239, 68, 68, .08);
+      border: 1px solid rgba(239, 68, 68, .3);
+      font-size: 13px;
+      color: #fca5a5;
+    }
+
+    .success-box.show,
+    .error-box.show {
+      display: block;
+    }
+
+    .success-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .success-link {
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-all;
+      margin-bottom: 8px;
+    }
+
+    .success-link a {
+      color: var(--cyan);
+    }
+
+    .copy-btn {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color .2s;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(10, 14, 26, .3);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── PREVIEW PANEL ── */
+    .preview-panel {
+      background: var(--navy);
+      padding: 32px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: calc(100vh - 60px);
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+
+    .letter-card {
+      background: #fff;
+      color: #1a1a1a;
+      width: 100%;
+      max-width: 720px;
+      border-radius: 10px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .4);
+      padding: 40px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .letter-logo-wrap {
+      text-align: center;
+      border-bottom: 2px solid #00d4ff;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .letter-logo-wrap img {
+      height: 140px;
+      width: auto;
+      margin: 0 auto;
+      display: block;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .msa-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .msa-h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin: 16px 0 8px;
+    }
+
+    .party-block {
+      margin-bottom: 12px;
+    }
+
+    .party-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .sig-placeholder {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    ul.msa-list {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    ul.msa-list li {
+      margin-bottom: 4px;
+    }
+
+    .signatures-preview {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+
+    .sign-box {
+      width: 45%;
+    }
+
+    .nova-sig-img {
+      height: 50px;
+      margin-bottom: -12px;
+      margin-top: -8px;
+      transform: rotate(-5deg);
+      mix-blend-mode: multiply;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo"><img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png"
+        alt="Novashield Cybertech LLP" /></div>
+    <div style="display:flex;gap:32px;align-items:center;">
+      <a href="/"
+        style="color:var(--muted);text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;transition:color 0.2s;">OFFER
+        LETTERS</a>
+      <a href="/admin-msa.html"
+        style="color:var(--cyan);text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;border-bottom:2px solid var(--cyan);padding-bottom:4px;">MSAs</a>
+    </div>
+    <div class="nav-badge">HIRING & SALES SYSTEM</div>
+  </nav>
+
+  <div class="wrapper">
+    <!-- ── FORM ── -->
+    <div class="form-panel">
+      <div class="panel-title">Generate Master Service Agreement</div>
+      <form id="msaForm">
+
+        <div class="form-section">
+          <div class="section-label">Client Details</div>
+
+          <div class="field">
+            <label>Client Legal Name <span style="color:#ef4444">*</span></label>
+            <input id="clientName" type="text" placeholder="e.g. Acme Industries Ltd." required />
+          </div>
+
+          <div class="field">
+            <label>Company Type <span style="color:#ef4444">*</span></label>
+            <select id="clientCompanyType" required>
+              <option value="Private Limited Company">Private Limited Company</option>
+              <option value="Public Limited Company">Public Limited Company</option>
+              <option value="Limited Liability Partnership">Limited Liability Partnership (LLP)</option>
+              <option value="One Person Company">One Person Company (OPC)</option>
+              <option value="Proprietorship">Proprietorship</option>
+              <option value="Partnership Firm">Partnership Firm</option>
+              <option value="Section 8 Company / NGO">Section 8 Company / NGO / Trust</option>
+              <option value="Foreign Company / LLC / Inc.">Foreign Company / LLC / Inc.</option>
+              <option value="Government Entity / PSU">Government Entity / PSU</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Registered Address <span style="color:#ef4444">*</span></label>
+            <textarea id="clientAddress" placeholder="Full Address, City, State, PIN" required></textarea>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <div class="field">
+              <label>Client GSTIN <span style="color:#ef4444">*</span></label>
+              <input id="clientGSTIN" type="text" placeholder="27AAAAA0000A1Z5" required />
+            </div>
+            <div class="field">
+              <label>Signatory Name <span style="color:#ef4444">*</span></label>
+              <input id="clientSignatory" type="text" placeholder="Director/Partner Name" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Client Email (for signing) <span style="color:#ef4444">*</span></label>
+            <input id="clientEmail" type="email" placeholder="client@example.com" required />
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="form-section">
+          <div class="section-label">Service & Terms Details</div>
+
+          <div class="field" id="servicesFieldContainer">
+            <label>Services to Provide <span style="color:#ef4444">*</span></label>
+            <div id="servicesCheckboxes" style="display:flex; flex-direction:column; gap:8px; margin-bottom: 12px; margin-top:8px;">
+              <label style="display:flex; align-items:center; gap:8px; font-weight:normal; text-transform:none; color:var(--text); letter-spacing:0; font-size:14px; cursor:pointer;"><input type="checkbox" class="service-checkbox" value="Web &amp; API Penetration Testing (VAPT)" checked style="width:auto; cursor:pointer;" /> Web &amp; API Penetration Testing (VAPT)</label>
+              <label style="display:flex; align-items:center; gap:8px; font-weight:normal; text-transform:none; color:var(--text); letter-spacing:0; font-size:14px; cursor:pointer;"><input type="checkbox" class="service-checkbox" value="Bug Bounty Program (Responsible Disclosure only)" checked style="width:auto; cursor:pointer;" /> Bug Bounty Program (Responsible Disclosure only)</label>
+              <label style="display:flex; align-items:center; gap:8px; font-weight:normal; text-transform:none; color:var(--text); letter-spacing:0; font-size:14px; cursor:pointer;"><input type="checkbox" class="service-checkbox" value="Startup Security Consulting &amp; Threat Modeling" checked style="width:auto; cursor:pointer;" /> Startup Security Consulting &amp; Threat Modeling</label>
+              <label style="display:flex; align-items:center; gap:8px; font-weight:normal; text-transform:none; color:var(--text); letter-spacing:0; font-size:14px; cursor:pointer;"><input type="checkbox" class="service-checkbox" value="Real-time Security Dashboard with 24/7 monitoring" checked style="width:auto; cursor:pointer;" /> Real-time Security Dashboard with 24/7 monitoring</label>
+            </div>
+            <div id="customServicesContainer" style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px;"></div>
+            <button type="button" id="addServiceBtn" style="background:transparent; border:1px solid var(--border); color:var(--cyan); padding:8px 14px; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; font-family:'DM Sans', sans-serif;">+ Add Custom Service</button>
+            <input type="hidden" id="services" />
+          </div>
+
+          <div class="field">
+            <label>Term Length <span style="color:#ef4444">*</span></label>
+            <input id="termLength" type="text" value="12 months" required />
+          </div>
+
+          <div class="field">
+            <label>Payment Terms <span style="color:#ef4444">*</span></label>
+            <input id="paymentTerms" type="text" value="50% advance + 50% on delivery & re-testing." required />
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <button type="submit" class="btn-send" id="sendBtn">GENERATE & SEND MSA</button>
+
+        <div class="error-box" id="errorBox"></div>
+
+        <div class="success-box" id="successBox">
+          <div class="success-title">✅ MSA GENERATED & SENT</div>
+          <div class="success-link">Client link: <br><a id="msaLink" href="#" target="_blank"></a></div>
+          <button class="copy-btn" id="copyBtn" type="button">Copy Link</button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- ── PREVIEW ── -->
+    <div class="preview-panel">
+      <div class="preview-header">
+        <div class="panel-title" style="margin-bottom:0">Live Preview</div>
+        <span style="font-size:12px;color:var(--muted)">Draft version</span>
+      </div>
+
+      <div class="letter-card">
+        <div class="letter-logo-wrap">
+          <img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png"
+            alt="Novashield Cybertech LLP" />
+        </div>
+
+        <div class="msa-title">MASTER SERVICE AGREEMENT</div>
+        <p><strong>This Master Service Agreement</strong> (“Agreement”) is entered into on <strong><span
+              id="prev-date"></span></strong> (“Effective Date”)</p>
+
+        <p style="text-align:center;margin:12px 0;"><strong>BETWEEN</strong></p>
+
+        <div class="party-block">
+          <div class="party-title">Novashield Cybertech LLP</div>
+          Having its registered office at <strong>Pune, Maharashtra, India</strong><br>
+          GSTIN: <strong>27AAAAA0000A1Z5</strong> | PAN: <strong>AAAAA0000A</strong><br>
+          Represented by its Designated Partner & CEO, <strong>Mr. Nishant Lungare</strong><br>
+          (hereinafter referred to as the “Service Provider” or “Novashield”)
+        </div>
+
+        <p style="text-align:center;margin:12px 0;"><strong>AND</strong></p>
+
+        <div class="party-block">
+          <div class="party-title" id="prev-client-name" class="sig-placeholder">[Client Name]</div>
+          A <strong id="prev-client-type" class="sig-placeholder">[Company Type]</strong> having its registered office
+          at <strong id="prev-client-address" class="sig-placeholder">[Address]</strong><br>
+          GSTIN: <strong id="prev-client-gstin" class="sig-placeholder">[GSTIN]</strong><br>
+          Represented by its Authorized Signatory, <strong id="prev-client-signatory"
+            class="sig-placeholder">[Signatory]</strong><br>
+          (hereinafter referred to as the “Client”)
+        </div>
+
+        <div class="msa-h2">WHEREAS</div>
+        <p>The Service Provider is engaged in providing cybersecurity services including Vulnerability Assessment &
+          Penetration Testing (VAPT), Bug Bounty Programs, Security Consulting, and Real-time Security Dashboard
+          Monitoring.</p>
+        <p>The Client wishes to avail these services on the terms and conditions set forth herein.</p>
+        <p><strong>NOW THEREFORE</strong>, in consideration of the mutual covenants, the parties agree as follows:</p>
+
+        <div class="msa-h2">1. Services</div>
+        <p>1.1 The Service Provider shall provide the following services as per separate Statement of Work (SOW):</p>
+        <ul class="msa-list" id="prev-services">
+          <!-- Populated by JS -->
+        </ul>
+        <p>1.2 All testing shall be performed only on staging/test environments unless written permission is given for
+          production.</p>
+
+        <div class="msa-h2">2. Term</div>
+        <p>This Agreement shall commence on the Effective Date and continue for <strong id="prev-term">[12
+            months]</strong> unless terminated earlier.</p>
+
+        <div class="msa-h2">3. Payment Terms</div>
+        <p>3.1 Fees shall be as per the approved SOW/Proforma Invoice.<br>
+          3.2 Payment Schedule: <strong id="prev-payment">[Payment Terms]</strong><br>
+          3.3 Taxes: GST extra at applicable rate.<br>
+          3.4 Late payment: 1.5% per month.</p>
+
+        <p><em>... additional clauses (Confidentiality, Intellectual Property, Liability, Termination, Jurisdiction,
+            etc.) are included in final generated PDF ...</em></p>
+
+        <div class="signatures-preview">
+          <div class="sign-box">
+            <strong>For Novashield Cybertech LLP</strong><br>
+            <img src="/signature.jpg" class="nova-sig-img" /><br>
+            Name: <strong>Mr. Nishant Narendra Lungare</strong><br>
+            Designation: CEO & Designated Partner
+          </div>
+          <div class="sign-box">
+            <strong>For the Client</strong><br><br><br>
+            Name: <strong id="prev-client-signatory-sig" class="sig-placeholder">[Signatory]</strong><br>
+            Designation: Authorized Signatory
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updatePreview() {
+      const now = new Date();
+      document.getElementById('prev-date').textContent = String(now.getDate()).padStart(2, '0') + '/' + String(now.getMonth() + 1).padStart(2, '0') + '/' + now.getFullYear();
+
+      const name = document.getElementById('clientName').value.trim();
+      const type = document.getElementById('clientCompanyType').value;
+      const addr = document.getElementById('clientAddress').value.trim();
+      const gstin = document.getElementById('clientGSTIN').value.trim();
+      const sig = document.getElementById('clientSignatory').value.trim();
+      const srvs = document.getElementById('services').value.trim();
+      const term = document.getElementById('termLength').value.trim();
+      const pay = document.getElementById('paymentTerms').value.trim();
+
+      setField('prev-client-name', name, '[Client Name]');
+      setField('prev-client-type', type, '[Company Type]');
+      setField('prev-client-address', addr, '[Address]');
+      setField('prev-client-gstin', gstin, '[GSTIN]');
+      setField('prev-client-signatory', sig, '[Signatory Name]');
+      setField('prev-client-signatory-sig', sig, '[Signatory Name]');
+      setField('prev-term', term, '[Term]');
+      setField('prev-payment', pay, '[Payment Terms]');
+
+      const ul = document.getElementById('prev-services');
+      ul.innerHTML = '';
+      if (srvs) {
+        srvs.split('\n').filter(Boolean).forEach(s => {
+          const li = document.createElement('li'); li.textContent = s; ul.appendChild(li);
+        });
+      } else {
+        ul.innerHTML = '<li class="sig-placeholder">[Services list...]</li>';
+      }
+    }
+
+    function setField(id, val, placeholder) {
+      const el = document.getElementById(id);
+      if (val) { el.textContent = val; el.classList.remove('sig-placeholder'); }
+      else { el.textContent = placeholder; el.classList.add('sig-placeholder'); }
+    }
+
+    function aggregateServices() {
+      const checkboxes = document.querySelectorAll('.service-checkbox:checked');
+      const customInputs = document.querySelectorAll('.custom-service-input');
+      let servicesList = [];
+      checkboxes.forEach(cb => servicesList.push(cb.value));
+      customInputs.forEach(input => {
+        if(input.value.trim()) servicesList.push(input.value.trim());
+      });
+      document.getElementById('services').value = servicesList.join('\n');
+      updatePreview();
+    }
+
+    document.getElementById('servicesCheckboxes').addEventListener('change', aggregateServices);
+
+    document.getElementById('addServiceBtn').addEventListener('click', () => {
+      const container = document.getElementById('customServicesContainer');
+      const wrapper = document.createElement('div');
+      wrapper.style.display = 'flex';
+      wrapper.style.gap = '8px';
+      
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'custom-service-input';
+      input.placeholder = 'Custom Service Name';
+      input.style.flex = 1;
+      
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.innerHTML = '×';
+      removeBtn.style.background = 'transparent';
+      removeBtn.style.border = 'none';
+      removeBtn.style.color = '#ef4444';
+      removeBtn.style.fontSize = '20px';
+      removeBtn.style.cursor = 'pointer';
+      removeBtn.style.padding = '0 8px';
+      
+      removeBtn.onclick = () => {
+        wrapper.remove();
+        aggregateServices();
+      };
+      
+      input.addEventListener('input', aggregateServices);
+      
+      wrapper.appendChild(input);
+      wrapper.appendChild(removeBtn);
+      container.appendChild(wrapper);
+    });
+
+    aggregateServices(); // Initialize the hidden input
+
+    ['clientName', 'clientCompanyType', 'clientAddress', 'clientGSTIN', 'clientSignatory', 'termLength', 'paymentTerms']
+      .forEach(id => document.getElementById(id).addEventListener('input', updatePreview));
+
+    updatePreview();
+
+    document.getElementById('msaForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('sendBtn');
+      const successBox = document.getElementById('successBox');
+      const errorBox = document.getElementById('errorBox');
+
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>GENERATING…';
+      successBox.classList.remove('show'); errorBox.classList.remove('show');
+
+      const payload = {
+        clientName: document.getElementById('clientName').value.trim(),
+        clientCompanyType: document.getElementById('clientCompanyType').value,
+        clientAddress: document.getElementById('clientAddress').value.trim(),
+        clientGSTIN: document.getElementById('clientGSTIN').value.trim(),
+        clientSignatory: document.getElementById('clientSignatory').value.trim(),
+        services: document.getElementById('services').value.trim(),
+        termLength: document.getElementById('termLength').value.trim(),
+        paymentTerms: document.getElementById('paymentTerms').value.trim(),
+        clientEmail: document.getElementById('clientEmail').value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/msa', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('msaLink').href = data.link;
+          document.getElementById('msaLink').textContent = data.link;
+          successBox.classList.add('show');
+          if (data.emailWarning) {
+            errorBox.textContent = '⚠️ Email could not be sent: ' + data.emailWarning;
+            errorBox.classList.add('show');
+          }
+        } else throw new Error(data.error || 'Unknown error');
+      } catch (err) {
+        errorBox.textContent = '❌ ' + err.message; errorBox.classList.add('show');
+      }
+      btn.disabled = false; btn.innerHTML = 'GENERATE & SEND MSA';
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      const link = document.getElementById('msaLink').href;
+      navigator.clipboard.writeText(link).then(() => {
+        document.getElementById('copyBtn').textContent = 'Copied!';
+        setTimeout(() => document.getElementById('copyBtn').textContent = 'Copy Link', 2000);
+      });
+    });
+  </script>
+</body>
+
+</html>

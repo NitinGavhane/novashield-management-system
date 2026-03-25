@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Service Agreement — Novashield Cybertech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a0e1a;
+      --cyan: #00d4ff;
+      --green: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* loading */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 999;
+      transition: opacity .4s;
+    }
+
+    .loader-logo img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .75;
+        transform: scale(.96);
+      }
+    }
+
+    .loader-bar {
+      width: 160px;
+      height: 2px;
+      background: rgba(255, 255, 255, .1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-progress {
+      height: 100%;
+      background: var(--cyan);
+      border-radius: 2px;
+      animation: load 1s ease-out forwards;
+    }
+
+    @keyframes load {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    /* header */
+    header {
+      background: var(--navy);
+      padding: 14px 24px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .header-logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* content */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 36px 16px;
+    }
+
+    /* letter card */
+    .letter-card {
+      background: #fff;
+      color: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0, 0, 0, .12);
+      padding: 48px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .letter-logo-wrap {
+      text-align: center;
+      border-bottom: 2px solid var(--cyan);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .letter-logo-wrap img {
+      height: 140px;
+      width: auto;
+      margin: 0 auto -24px;
+      display: block;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .msa-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .msa-h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      margin-bottom: 8px;
+    }
+
+    .party-block {
+      margin-bottom: 16px;
+    }
+
+    .party-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    ul.msa-list {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    ul.msa-list li {
+      margin-bottom: 6px;
+    }
+
+    .signatures-preview {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 32px;
+    }
+
+    .sign-box {
+      width: 45%;
+    }
+
+    .nova-sig-img {
+      height: 60px;
+      margin-bottom: -12px;
+      margin-top: -8px;
+      transform: rotate(-5deg);
+      mix-blend-mode: multiply;
+    }
+
+    /* acceptance */
+    .acceptance {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .acceptance-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .acceptance-text {
+      font-size: 15px;
+      color: #374151;
+      margin-bottom: 24px;
+    }
+
+    /* signature input */
+    .sig-group {
+      margin-bottom: 16px;
+    }
+
+    .sig-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      letter-spacing: .5px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .sig-input {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      color: #1e293b;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .sig-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, .1);
+    }
+
+    .sig-input::placeholder {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    .sig-canvas {
+      width: 100%;
+      height: 150px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    .sig-canvas-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 8px;
+    }
+    .btn-clear {
+      background: transparent;
+      border: none;
+      color: #ef4444;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-clear:hover { text-decoration: underline; }
+
+    .date-display {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-top: 6px;
+    }
+
+    .btn-accept {
+      width: 100%;
+      background: var(--navy);
+      color: var(--cyan);
+      border: 1.5px solid var(--cyan);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 12px;
+    }
+
+    .btn-accept:hover {
+      background: var(--cyan);
+      color: var(--navy);
+    }
+
+    .btn-accept:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    /* accepted state */
+    .accepted-badge {
+      display: none;
+      background: #d1fae5;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .accepted-badge.show {
+      display: block;
+    }
+
+    .accepted-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #065f46;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .accepted-sub {
+      font-size: 14px;
+      color: #047857;
+    }
+
+    .accepted-sig {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #a7f3d0;
+    }
+
+    .accepted-sig-name {
+      font-weight: 600;
+      font-size: 16px;
+      color: #1e293b;
+    }
+
+    .accepted-sig-date {
+      font-size: 14px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    /* error */
+    .err {
+      font-size: 14px;
+      color: #ef4444;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .err.show {
+      display: block;
+    }
+
+    /* 404 */
+    .not-found {
+      text-align: center;
+      padding: 80px 24px;
+      display: none;
+    }
+
+    .not-found.show {
+      display: block;
+    }
+
+    .not-found-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .not-found-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .not-found-text {
+      color: #64748b;
+      font-size: 16px;
+    }
+
+    /* spinner */
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(0, 212, 255, .3);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .letter-card {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Loading screen -->
+  <div id="loader">
+    <div class="loader-logo"><img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png"
+        alt="Novashield Cybertech LLP" /></div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-logo"><img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png"
+        alt="Novashield Cybertech LLP" /></div>
+  </header>
+
+  <div class="content">
+
+    <!-- Not found -->
+    <div class="not-found" id="notFound">
+      <div class="not-found-icon">🔒</div>
+      <div class="not-found-title">Agreement Not Found</div>
+      <div class="not-found-text">This MSA link is invalid or has expired.</div>
+    </div>
+
+    <!-- Letter -->
+    <div class="letter-card" id="letterCard" style="display:none">
+      <div class="letter-logo-wrap">
+        <img src="https://ucarecdn.com/789656b4-f209-4137-bfd7-c48f593d32b8/NOVALOGO1_Logo.png"
+          alt="Novashield Cybertech LLP" />
+      </div>
+
+      <div class="msa-title">MASTER SERVICE AGREEMENT</div>
+      <p><strong>This Master Service Agreement</strong> (“Agreement”) is entered into on <strong><span
+            id="msaDate"></span></strong> (“Effective Date”)</p>
+
+      <p style="text-align:center;margin:16px 0;"><strong>BETWEEN</strong></p>
+
+      <div class="party-block">
+        <div class="party-title">Novashield Cybertech LLP</div>
+        Having its registered office at <strong>Pune, Maharashtra, India</strong><br>
+        GSTIN: <strong>27AAAAA0000A1Z5</strong> | PAN: <strong>AAAAA0000A</strong><br>
+        Represented by its Designated Partner & CEO, <strong>Mr. Nishant Lungare</strong><br>
+        (hereinafter referred to as the “Service Provider” or “Novashield”)
+      </div>
+
+      <p style="text-align:center;margin:16px 0;"><strong>AND</strong></p>
+
+      <div class="party-block">
+        <div class="party-title" id="clientName"></div>
+        A <strong id="clientType"></strong> having its registered office at <strong id="clientAddress"></strong><br>
+        GSTIN: <strong id="clientGSTIN"></strong><br>
+        Represented by its Authorized Signatory, <strong id="clientSignatory1"></strong><br>
+        (hereinafter referred to as the “Client”)
+      </div>
+
+      <div class="msa-h2">WHEREAS</div>
+      <p>The Service Provider is engaged in providing cybersecurity services including Vulnerability Assessment &
+        Penetration Testing (VAPT), Bug Bounty Programs, Security Consulting, and Real-time Security Dashboard
+        Monitoring.</p>
+      <p>The Client wishes to avail these services on the terms and conditions set forth herein.</p>
+      <p><strong>NOW THEREFORE</strong>, in consideration of the mutual covenants, the parties agree as follows:</p>
+
+      <div class="msa-h2">1. Services</div>
+      <p>1.1 The Service Provider shall provide the following services as per separate Statement of Work (SOW):</p>
+      <ul class="msa-list" id="servicesList">
+        <!-- Populated by JS -->
+      </ul>
+      <p>1.2 All testing shall be performed only on staging/test environments unless written permission is given for
+        production.</p>
+
+      <div class="msa-h2">2. Term</div>
+      <p>This Agreement shall commence on the Effective Date and continue for <strong id="termLength"></strong> unless
+        terminated earlier.</p>
+
+      <div class="msa-h2">3. Payment Terms</div>
+      <p>3.1 Fees shall be as per the approved SOW/Proforma Invoice.<br>
+        3.2 Payment Schedule: <strong id="paymentTerms"></strong><br>
+        3.3 Taxes: GST extra at applicable rate.<br>
+        3.4 Late payment: 1.5% per month.</p>
+
+      <div class="msa-h2">4. Confidentiality & NDA</div>
+      <p>Both parties shall abide by the separate Non-Disclosure Agreement executed simultaneously with this MSA.</p>
+
+      <div class="msa-h2">5. Intellectual Property & Reports</div>
+      <p>All reports, findings, and dashboard access remain the property of the Client after full payment. Novashield
+        retains right to use anonymised findings for marketing/portfolio (with Client approval).</p>
+
+      <div class="msa-h2">6. Limitation of Liability</div>
+      <p>Novashield’s total liability shall not exceed the fees paid in the last 12 months. Novashield follows
+        responsible disclosure and shall not be liable for any indirect damages.</p>
+
+      <div class="msa-h2">7. Termination</div>
+      <p>Either party may terminate with 30 days written notice. Upon termination, Client shall pay for all services
+        rendered till date.</p>
+
+      <div class="msa-h2">8. Governing Law & Jurisdiction</div>
+      <p>This Agreement shall be governed by the laws of India. Any disputes shall be subject to the exclusive
+        jurisdiction of courts in Pune, Maharashtra.</p>
+
+      <div class="msa-h2">9. Miscellaneous</div>
+      <ul class="msa-list">
+        <li>Entire Agreement clause</li>
+        <li>Force Majeure</li>
+        <li>Electronic signatures accepted</li>
+        <li>Counterparts</li>
+      </ul>
+
+      <p style="margin-top: 16px;"><strong>IN WITNESS WHEREOF</strong> the parties have executed this Agreement on the
+        date first above written.</p>
+
+      <div class="signatures-preview">
+        <div class="sign-box">
+          <strong>For Novashield Cybertech LLP</strong><br>
+          <img src="/signature.jpg" class="nova-sig-img" alt="Novashield Signature" /><br>
+          Name: <strong>Mr. Nishant Narendra Lungare</strong><br>
+          Designation: CEO & Designated Partner<br>
+          Date: <strong id="novaSigDate"></strong>
+        </div>
+        <div class="sign-box">
+          <strong>For the Client</strong><br><br><br>
+          Name: <strong id="clientSignatory2"></strong><br>
+          Designation: Authorized Signatory
+        </div>
+      </div>
+
+      <!-- Acceptance section -->
+      <div class="acceptance" id="acceptanceSection">
+        <div class="acceptance-title">SIGNATURE & ACCEPTANCE</div>
+        <p class="acceptance-text">
+          I, <strong id="acceptName"></strong>, being the Authorized Signatory of the Client, accept and sign this
+          Master Service Agreement.
+        </p>
+
+        <!-- Not yet accepted -->
+        <div id="signForm">
+          <div class="sig-group">
+            <div class="sig-canvas-header">
+              <label class="sig-label" style="margin-bottom:0;">Draw Your Signature</label>
+              <button type="button" class="btn-clear" id="clearBtn">Clear</button>
+            </div>
+            <canvas id="sigCanvas" class="sig-canvas"></canvas>
+          </div>
+          <div class="sig-group" style="margin-top:20px;">
+            <label class="sig-label">Position / Role in Organization</label>
+            <input class="sig-input" id="clientRoleInput" type="text" placeholder="e.g. Director, Managing Partner…" />
+          </div>
+          <div class="sig-group">
+            <div class="date-placeholder date-display">Date will be recorded automatically on submission.</div>
+          </div>
+          <div class="err" id="sigErr">Please draw your signature and enter your role.</div>
+          <button class="btn-accept" id="acceptBtn">AGREE & SIGN MSA</button>
+        </div>
+
+        <!-- Already / just accepted -->
+        <div class="accepted-badge" id="acceptedBadge">
+          <div class="accepted-title">✅ AGREEMENT SIGNED</div>
+          <div class="accepted-sub">Thank you! Your signature has been recorded and the final document generated. Check
+            your email.</div>
+          <div class="accepted-sig">
+            <div class="accepted-sig-name" id="acceptedSigName"></div>
+            <div class="accepted-sig-date" id="acceptedSigDate"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Helpers ──────────────────────────────────────────────────────────────
+    function getMsaId() {
+      const parts = window.location.pathname.split('/');
+      return parts[parts.length - 1];
+    }
+
+    // ── Load MSA ────────────────────────────────────────────────────────────
+    async function loadMsa() {
+      const id = getMsaId();
+      try {
+        const res = await fetch(`/api/msa/${id}`);
+        const data = await res.json();
+
+        if (!res.ok || data.error) {
+          document.getElementById('notFound').classList.add('show');
+          return;
+        }
+
+        // Populate fields
+        document.getElementById('msaDate').textContent = data.date;
+        document.getElementById('novaSigDate').textContent = data.date;
+
+        document.getElementById('clientName').textContent = data.clientName;
+        document.getElementById('clientType').textContent = data.clientCompanyType;
+        document.getElementById('clientAddress').textContent = data.clientAddress;
+        document.getElementById('clientGSTIN').textContent = data.clientGSTIN;
+        document.getElementById('clientSignatory1').textContent = data.clientSignatory;
+        document.getElementById('clientSignatory2').textContent = data.clientSignatory;
+        document.getElementById('acceptName').textContent = data.clientSignatory;
+
+        document.getElementById('termLength').textContent = data.termLength;
+        document.getElementById('paymentTerms').textContent = data.paymentTerms;
+
+        const ul = document.getElementById('servicesList');
+        data.services.split('\n').filter(Boolean).forEach(s => {
+          const li = document.createElement('li'); li.textContent = s; ul.appendChild(li);
+        });
+
+        // Already accepted?
+        if (data.status === 'accepted') {
+          showAccepted(data.clientSignature, data.clientRole, data.acceptedDate);
+        }
+
+        document.getElementById('letterCard').style.display = '';
+
+      } catch (e) {
+        document.getElementById('notFound').classList.add('show');
+      }
+
+      // Hide loader
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 400);
+    }
+
+    function showAccepted(sig, role, date) {
+      document.getElementById('signForm').style.display = 'none';
+      
+      const sigNameEl = document.getElementById('acceptedSigName');
+      if (sig && sig.startsWith('data:image')) {
+        sigNameEl.innerHTML = `Signature: <br><img src="${sig}" style="max-height:80px; mix-blend-mode:multiply; margin:8px 0;"/><br>Role: ${role || ''}`;
+      } else {
+        sigNameEl.innerHTML = `Signature: ${sig}<br>Role: ${role || ''}`;
+      }
+      
+      document.getElementById('acceptedSigDate').textContent = 'Date: ' + date;
+      document.getElementById('acceptedBadge').classList.add('show');
+    }
+
+    // ── Signature Canvas ──────────────────────────────────────────────────────
+    const canvas = document.getElementById('sigCanvas');
+    let ctx = null;
+    let isDrawing = false;
+    let hasDrawn = false;
+
+    if (canvas) {
+      ctx = canvas.getContext('2d');
+      // Resize canvas based on container width to avoid blurry lines
+      function resizeCanvas() {
+        const rect = canvas.parentNode.getBoundingClientRect();
+        if (canvas.width !== rect.width) {
+          canvas.width = rect.width;
+          canvas.height = 150; // Match CSS height
+          ctx.strokeStyle = '#0a0e1a';
+          ctx.lineWidth = 3;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+        }
+      }
+      window.addEventListener('resize', resizeCanvas);
+      // Wait for display then calculate
+      setTimeout(resizeCanvas, 100); 
+
+      function getCursorPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: clientX - rect.left,
+          y: clientY - rect.top
+        };
+      }
+
+      function startDrawing(e) {
+        isDrawing = true;
+        hasDrawn = true;
+        const pos = getCursorPos(e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+        if (e.type === 'touchstart') e.preventDefault();
+      }
+
+      function draw(e) {
+        if (!isDrawing) return;
+        const pos = getCursorPos(e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+        if (e.type === 'touchmove') e.preventDefault();
+      }
+
+      function stopDrawing() {
+        if (isDrawing) {
+          ctx.closePath();
+          isDrawing = false;
+        }
+      }
+
+      canvas.addEventListener('mousedown', startDrawing);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', stopDrawing);
+      canvas.addEventListener('mouseout', stopDrawing);
+
+      canvas.addEventListener('touchstart', startDrawing, { passive: false });
+      canvas.addEventListener('touchmove', draw, { passive: false });
+      canvas.addEventListener('touchend', stopDrawing);
+      canvas.addEventListener('touchcancel', stopDrawing);
+
+      document.getElementById('clearBtn').addEventListener('click', () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        hasDrawn = false;
+      });
+    }
+
+    // ── Accept ────────────────────────────────────────────────────────────────
+    document.getElementById('acceptBtn').addEventListener('click', async () => {
+      const roleInput = document.getElementById('clientRoleInput').value.trim();
+      const err = document.getElementById('sigErr');
+      const btn = document.getElementById('acceptBtn');
+
+      if (!hasDrawn || !roleInput) { 
+        err.classList.add('show'); 
+        return; 
+      }
+      err.classList.remove('show');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>SUBMITTING…';
+
+      try {
+        const base64Sig = canvas.toDataURL('image/png');
+        const id = getMsaId();
+        const res = await fetch(`/api/msa/${id}/accept`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ signature: base64Sig, clientRole: roleInput })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showAccepted(base64Sig, roleInput, data.acceptedDate);
+        } else {
+          throw new Error(data.error);
+        }
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = 'AGREE & SIGN MSA';
+        err.textContent = '❌ ' + e.message;
+        err.classList.add('show');
+      }
+    });
+
+    loadMsa();
+  </script>
+</body>
+
+</html>
